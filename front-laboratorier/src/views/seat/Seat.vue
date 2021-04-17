@@ -44,12 +44,21 @@ import SeatInfo from "views/seat/childComps/SeatInfo"
   flex: 1;
   width: 70%;
   height: 100%;
+
+
+  margin-right: 10px;
 }
 
 .seat-info{
-  width: 25%;
-  height: 100%;
-  background: cadetblue;
+  width: 23%;
+  height: 95%;
+
+  margin-top: 10px;
+  /* margin-left: 10px; */
+
+  background:#e1f0ff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 </style>

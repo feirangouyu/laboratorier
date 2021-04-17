@@ -42,26 +42,25 @@ import NavContent from 'components/common/nav/NavContent.vue'
 import NavItem from 'components/common/nav/NavItem.vue'
 
   export default {
-  components: { 
-    NavContent,
-    NavItem
-  
-  },
-  data(){
-    return{
-      home:"首页",
-      zoomStatus: true,
-    }
-  },
-  created(){
+    components: { 
+      NavContent,
+      NavItem
+    
+    },
+    data(){
+      return{
+        home:"首页",
+        zoomStatus: true,
+      }
+    },
 
-  }
     
   }
 </script>
 
 
 <style scoped>
+
 
 
 </style>

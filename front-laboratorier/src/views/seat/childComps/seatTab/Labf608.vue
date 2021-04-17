@@ -1,31 +1,34 @@
 <template>
-  <div class="lab-608" :getLoca="userName()">
+  <div class="lab-608" :getLoca="getData()">
     <div class="col">
       <div class="row first" >
         <div>
           <div class="blank">停用</div>
-          <site :loca="siteLoca[2]" />
-          <site :loca="siteLoca[3]" />
+
+          <site :loca="siteLoca[1]" id="1" lab="f608"/>
+          <site :loca="siteLoca[2]" id="2" lab="f608"/>
         </div>
       </div>
       <div class="row">
         <div>
-          <site :loca="siteLoca[1]" />
-          <site :loca="siteLoca[2]" />
-          <site :loca="siteLoca[3]" />
-          <site :loca="siteLoca[3]" />
-          <site :loca="siteLoca[2]" />
-          <site :loca="siteLoca[1]" />
+
+          <site :loca="siteLoca[3]" id="3" lab="f608"/>
+          <site :loca="siteLoca[4]" id="4" lab="f608"/>
+          <site :loca="siteLoca[5]" id="5" lab="f608"/>
+          <site :loca="siteLoca[6]" id="6" lab="f608"/>
+          <site :loca="siteLoca[7]" id="7" lab="f608"/>
+          <site :loca="siteLoca[8]" id="8" lab="f608"/>
         </div>
       </div>
       <div class="row">
         <div>
-          <site :loca="siteLoca[1]" />
-          <site :loca="siteLoca[2]" />
-          <site :loca="siteLoca[3]" />
-          <site :loca="siteLoca[3]" />
-          <site :loca="siteLoca[2]" />
-          <site :loca="siteLoca[1]" />
+
+          <site :loca="siteLoca[9]"  id="9"  lab="f608"/>
+          <site :loca="siteLoca[10]" id="10" lab="f608"/>
+          <site :loca="siteLoca[11]" id="11" lab="f608"/>
+          <site :loca="siteLoca[12]" id="12" lab="f608"/>
+          <site :loca="siteLoca[13]" id="13" lab="f608"/>
+          <site :loca="siteLoca[14]" id="14" lab="f608"/>
         </div>
       </div>
     </div>
@@ -39,48 +42,49 @@
 
 <script>
 import Site from "./Site.vue";
+
 export default {
   components: {
     Site,
   },
+
+
   data() {
     return {
-      user: [
-        {
-          name: "谢旗峰",
-          laboraid: "f609",
-          seatId: 2,
-        },
-        {
-          name: "胡雯",
-          laboraid: "f609",
-          seatId: 3,
-        },
-        {
-          name: "邹昀",
-          laboraid: "f609",
-          seatId: 1,
-        },
-        {
-          name: "邹昀",
-          laboraid: "f608",
-          seatId: 4,
-        },
-      ],
+      users:null,
       siteLoca: [],
     };
   },
-  computed: {},
+
   methods: {
+
+    getData(){
+      let users = this.$store.state.userInfo;
+      if( users === null ){
+        getUserInfo().then(res => {
+            this.users = res;
+            this.showUsers = this.users;
+            this.$store.commit("commitUserInfo",this.users);
+
+            //注意异步操作
+            this.users = this.$store.state.userInfo;
+            this.userName();
+        })
+      }
+      else{
+        this.users = this.$store.state.userInfo;
+        this.userName();
+      }
+      
+    },
+
     userName() {
-      for (let index = 1; index < this.user.length; index++) {
-        for (let i in this.user) {
+      for (let index = 1; index < this.users.length; index++) {
+        for (let i in this.users) {
           if (
-            this.user[i].laboraid === "f609" &&
-            this.user[i].seatId === index
-          ) {
-            this.siteLoca[index] = this.user[i].name;
-            break;
+            this.users[i].laboraid === "f608" &&this.users[i].seatId === `${index}`) {
+              this.siteLoca[index] = this.users[i].name;
+              break;
           }
         }
       }
@@ -93,41 +97,61 @@ export default {
 .lab-608 {
   width: 70%;
   height: 90%;
-  margin-left: 13%;
+
+  margin-left: 17%;
   position: relative;
   display: flex;
 }
+
+
 .col {
   width: 35%;
   height: 95%;
   flex: 1;
   margin: -15px 30px;
+
+
   display: flex;
   flex-direction: column;
 }
+
+
+
 .row {
   flex: 1;
+
   width: 100%;
   height: 30%;
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+
+
+
 .row > div {
   width: 90%;
 }
+
 .blank{
   width: 32%;
   height: 60px;
   background:#d9ecff;
   border: 1px solid #409eff;
+
+
   float: left;
+
   line-height: 60px;
   text-align: center;
 }
+
 .first{
   transform: translateY(25px);
 }
+
 .style{
   height: 11px;
   width: 120px;
@@ -136,21 +160,28 @@ export default {
   letter-spacing:30px;
   font-size: 10px;
   position: absolute;
+
+
   left: 12%;
   top: 5%;
 }
+
+
 .door{
   left: 12%;
   top: 5%;
 }
+
 .window1{
   left: 15%;
   top: 95%;
 }
+
 .window2{
   left: 40%;
   top: 95%;
 }
+
 .style-air{
   height: 100px;
   width: 11px;
@@ -158,9 +189,13 @@ export default {
   line-height: 50px;
   font-size: 10px;
   position: absolute;
+
+
   top: 70%;
   right: 5%;
 }
+
+
 .style-water{
   height: 100px;
   width: 11px;
@@ -168,7 +203,10 @@ export default {
   line-height: 32px;
   font-size: 10px;
   position: absolute;
+
+
   top: 35%;
   left: 2%;
+
 }
 </style>

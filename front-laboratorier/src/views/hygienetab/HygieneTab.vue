@@ -5,8 +5,15 @@
 </template>
 
 <script>
+
+  import { getHygiene } from 'network/reqData'
   export default {
-    
+    mounted(){
+      
+      getHygiene().then(res=>{
+        console.log(res);
+      })
+    }
   }
 </script>
 

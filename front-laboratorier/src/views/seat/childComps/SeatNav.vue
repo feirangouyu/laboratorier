@@ -11,7 +11,7 @@
         <div slot="nav-text">F608</div>
       </nav-item>
       <nav-item >
-        <filter-search slot="nav-text" :isSelect="false"/>
+        <seat-search slot="nav-text"/>
       </nav-item>
     </nav-content>
     
@@ -23,15 +23,18 @@
 <script>
 import NavContent from 'components/common/nav/NavContent.vue'
 import NavItem from 'components/common/nav/NavItem.vue'
-import FilterSearch from 'components/common/search/FilterSearch.vue'
+import SeatSearch from './seatTab/SeatSearch.vue'
+
   export default {
     components: { 
       NavContent,
       NavItem,
-      FilterSearch,
+      SeatSearch,
+
     },
   }
 </script>
 
 <style scoped>
+
 </style>

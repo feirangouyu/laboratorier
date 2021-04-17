@@ -10,7 +10,12 @@ const Seat = () => import('views/seat/Seat')
 const UserInfo = () => import('views/userinfo/UserInfo')
 
 
+
 const AccoLab = () => import('views/account/childComps/AccoLab')
+
+const Labf608 =()=> import('views/seat/childComps/seatTab/Labf608')
+const Labf609 =()=> import('views/seat/childComps/seatTab/Labf609')
+
 
 Vue.use(VueRouter)
 
@@ -48,6 +53,21 @@ const routes = [
   {
     path: '/seat',
     component:Seat,
+    children:[
+      {
+        path:'',
+        redirect: 'f609'
+      },
+      {
+        path: 'f609',
+        component:Labf609
+      },
+      {
+        path: 'f608',
+        component:Labf608
+      },
+    ]
+
   },
   {
     path: '/userinfo',
